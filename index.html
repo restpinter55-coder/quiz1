@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kuis Audio sebagai Elemen Interaktif dalam Multimedia">
+  <title>Kuis Audio Interaktif</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">♪</div>
+    <div><strong>Kuis Multimedia Interaktif</strong><small>Audio sebagai Elemen Interaktif</small></div>
+    <button id="teacherOpen" class="button button-outline button-small">Halaman Dosen</button>
+  </header>
+  <main class="container">
+    <section id="welcomeView" class="panel hero">
+      <span class="eyebrow">KUIS PERKULIAHAN</span>
+      <h1>Uji pemahamanmu tentang audio interaktif.</h1>
+      <p>25 soal pilihan ganda · 4 pilihan per soal · tanpa batas waktu.</p>
+      <form id="startForm">
+        <label for="studentName">Nama mahasiswa</label>
+        <input id="studentName" name="studentName" autocomplete="name" required minlength="2" maxlength="100" placeholder="Masukkan nama lengkap">
+        <button class="button button-primary" type="submit">Mulai kuis <span>→</span></button>
+      </form>
+      <p class="muted tiny">Hasil dan pembahasan ditampilkan setelah jawaban dikirim.</p>
+    </section>
+
+    <section id="quizView" class="panel hidden">
+      <div class="quiz-heading">
+        <div><span class="eyebrow">SEDANG MENGERJAKAN</span><h1 id="helloStudent">Halo!</h1></div>
+        <span id="saveStatus" class="save-status">Belum dimulai</span>
+      </div>
+      <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+      <div class="question-meta"><span id="questionCount">Soal 1 dari 25</span><span id="answeredCount">0 dijawab</span></div>
+      <h2 id="questionText" class="question-text"></h2>
+      <div id="options" class="options"></div>
+      <div class="quiz-actions">
+        <button id="prevButton" class="button button-outline" type="button">← Sebelumnya</button>
+        <button id="nextButton" class="button button-primary" type="button">Berikutnya →</button>
+      </div>
+      <div class="question-grid" id="questionGrid" aria-label="Navigasi nomor soal"></div>
+      <div class="submit-row"><p id="submitHint" class="muted tiny">Pastikan jawabanmu sudah diperiksa sebelum mengirim.</p><button id="submitButton" class="button button-dark" type="button">Kirim jawaban</button></div>
+    </section>
+
+    <section id="resultView" class="panel hidden">
+      <span class="eyebrow">KUIS SELESAI</span><h1>Hasil pengerjaan</h1>
+      <p id="resultName" class="muted"></p>
+      <div class="score-card"><strong id="resultScore">0</strong><span>Nilai dari 100</span></div>
+      <div class="stat-row"><div><strong id="resultCorrect">0</strong><span>Benar</span></div><div><strong id="resultIncorrect">0</strong><span>Salah</span></div><div><strong id="resultWrongNumbers">—</strong><span>Nomor salah</span></div></div>
+      <h2>Ulasan jawaban</h2><div id="reviewList" class="review-list"></div>
+      <p class="muted tiny">Nilai dihitung otomatis dari 25 soal dengan bobot sama.</p>
+    </section>
+
+    <section id="teacherLoginView" class="panel narrow hidden">
+      <button id="teacherBack" class="text-button" type="button">← Kembali ke kuis</button>
+      <span class="eyebrow">AREA KHUSUS DOSEN</span><h1>Masuk ke dashboard</h1>
+      <p class="muted">Masukkan password dosen untuk melihat progres dan hasil peserta.</p>
+      <form id="teacherLoginForm"><label for="teacherPassword">Password dosen</label><input id="teacherPassword" type="password" required autocomplete="current-password" placeholder="Password"><button class="button button-primary" type="submit">Masuk dashboard</button></form>
+      <p id="loginError" class="error-text"></p>
+    </section>
+
+    <section id="dashboardView" class="hidden">
+      <div class="dashboard-title"><div><span class="eyebrow">PANEL PENGAJAR</span><h1>Dashboard perkembangan kuis</h1><p id="dashboardUpdated" class="muted tiny">Menunggu data…</p></div><button id="logoutButton" class="button button-outline">Keluar</button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span>Total peserta</span><strong id="totalParticipants">0</strong></article>
+        <article class="stat-card"><span>Sedang mengerjakan</span><strong id="activeParticipants">0</strong></article>
+        <article class="stat-card"><span>Selesai</span><strong id="completedParticipants">0</strong></article>
+        <article class="stat-card"><span>Rata-rata nilai</span><strong id="averageScore">0</strong></article>
+      </div>
+      <div class="toolbar"><input id="searchStudents" placeholder="Cari nama mahasiswa…" aria-label="Cari mahasiswa"><button id="refreshButton" class="button button-outline">↻ Perbarui</button><button id="exportButton" class="button button-primary">Unduh Excel (.xlsx)</button><button id="keyButton" class="button button-outline">Kunci jawaban</button></div>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Mahasiswa</th><th>Status</th><th>Progres</th><th>Benar</th><th>Salah</th><th>Nomor salah</th><th>Nilai</th><th>Aktivitas terakhir</th></tr></thead><tbody id="studentRows"></tbody></table></div><p id="emptyDashboard" class="muted empty-state hidden">Belum ada peserta.</p></div>
+      <div id="answerKeyPanel" class="panel hidden"><h2>Kunci jawaban dosen</h2><p class="muted tiny">Bagian ini hanya muncul setelah autentikasi dosen.</p><div id="answerKeyList" class="key-list"></div></div>
+    </section>
+    <div id="toast" role="status" class="toast hidden"></div>
+  </main>
+  <footer>Materi: Audio sebagai Elemen Interaktif dalam Multimedia · Kuis pembelajaran</footer>
+  <script src="app.js"></script>
+</body>
+</html>
